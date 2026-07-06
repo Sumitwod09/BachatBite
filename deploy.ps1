@@ -83,12 +83,17 @@ try {
     Write-Host "Copying deployment files..." -ForegroundColor Cyan
     Copy-Item -Path "$tempDeploy\*" -Destination . -Recurse -Force
 
+    # Add only deployment files to avoid staging build directories
+    Write-Host "Staging deployment files..." -ForegroundColor Cyan
+    Get-ChildItem -Path $tempDeploy | ForEach-Object {
+        git add $_.Name
+    }
+
     # Clean up temp folder
     Remove-Item $tempDeploy -Recurse -Force
 
-    # Add and commit
+    # Commit changes
     Write-Host "Committing changes..." -ForegroundColor Cyan
-    git add -A
     git commit -m "deploy: update landing page, web planner under /app, and BachatBite.apk"
 
     # Push to origin
@@ -114,5 +119,10 @@ finally {
     # Remove dist folder
     if (Test-Path $distPath) {
         Remove-Item -Path $distPath -Recurse -Force
+    }
+
+    # Remove temp deploy folder if it exists
+    if ($tempDeploy -and (Test-Path $tempDeploy)) {
+        Remove-Item -Path $tempDeploy -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
