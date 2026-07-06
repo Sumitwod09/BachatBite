@@ -118,7 +118,6 @@ h1, h2, h3, h4 {
 
 .btn-primary:hover {
   background-color: var(--color-primary-hover);
-  transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(255, 94, 54, 0.45);
 }
 
@@ -131,12 +130,13 @@ h1, h2, h3, h4 {
 
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
 }
 
 /* Button with dual titles (Hero Action) */
 .btn-icon {
-  font-size: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 14px;
 }
 
@@ -396,7 +396,6 @@ nav a:hover {
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
   border-color: rgba(255, 94, 54, 0.3);
   box-shadow: 0 15px 35px rgba(255, 94, 54, 0.05);
 }
