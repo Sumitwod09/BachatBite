@@ -38,6 +38,22 @@ class MealPlanService {
           hasFridge: input.hasFridge,
         );
 
+        // For Non-Veg or Eggitarian diets, on alternating days, try to enforce a Non-Veg/Egg meal for Lunch or Dinner
+        final isAlternatingDay = day == 'Monday' || day == 'Wednesday' || day == 'Friday' || day == 'Sunday';
+        if (isAlternatingDay && (slot == 'Lunch' || slot == 'Dinner')) {
+          if (input.dietaryPreference == 'Non-Veg') {
+            final nonVegPool = pool.where((r) => r.type == 'Non-Veg').toList();
+            if (nonVegPool.isNotEmpty) {
+              pool = nonVegPool;
+            }
+          } else if (input.dietaryPreference == 'Eggitarian') {
+            final eggPool = pool.where((r) => r.isEggBased).toList();
+            if (eggPool.isNotEmpty) {
+              pool = eggPool;
+            }
+          }
+        }
+
         // Remove the last selected recipe for this slot to avoid consecutive repeats
         final lastId = lastSelectedPerSlot[slot];
         if (lastId != null && pool.length > 1) {

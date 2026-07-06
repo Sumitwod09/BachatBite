@@ -64,11 +64,15 @@ class Recipe {
       final name = i.name.toLowerCase();
       final cat = i.category.toLowerCase();
       return cat == 'dairy/eggs' ||
+          cat == 'non-veg' ||
           name.contains('curd') ||
           name.contains('egg') ||
           name.contains('milk') ||
           name.contains('paneer') ||
-          name.contains('cheese');
+          name.contains('cheese') ||
+          name.contains('chicken') ||
+          name.contains('mutton') ||
+          name.contains('fish');
     });
   }
 

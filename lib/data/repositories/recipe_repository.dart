@@ -186,6 +186,42 @@ class RecipeRepository {
         'Combine sprouts with gravy in a bowl, top with crispy farsan, and serve with pav.',
       ],
     ),
+    const Recipe(
+      id: 'rec_011',
+      name: 'Chicken Curry and Rice',
+      costPerPerson: 50.0,
+      type: 'Non-Veg',
+      timeMinutes: 35,
+      mealSlot: 'Lunch/Dinner',
+      ingredients: [
+        Ingredient(name: 'Chicken', baseQuantity: 150, unit: 'grams', category: 'Non-Veg'),
+        Ingredient(name: 'Rice', baseQuantity: 100, unit: 'grams', category: 'Groceries'),
+        Ingredient(name: 'Onion, Tomato & Spices', baseQuantity: 60, unit: 'grams', category: 'Vegetables'),
+      ],
+      steps: [
+        'Marinate chicken pieces with ginger-garlic paste, yogurt, and spices.',
+        'Sauté onions and tomatoes in a pot, add chicken, and cook until golden brown.',
+        'Add water, simmer for 20 minutes until chicken is tender. Serve with boiled rice.',
+      ],
+    ),
+    const Recipe(
+      id: 'rec_012',
+      name: 'Chicken Kheema and Roti',
+      costPerPerson: 45.0,
+      type: 'Non-Veg',
+      timeMinutes: 25,
+      mealSlot: 'Lunch/Dinner',
+      ingredients: [
+        Ingredient(name: 'Minced Chicken (Kheema)', baseQuantity: 120, unit: 'grams', category: 'Non-Veg'),
+        Ingredient(name: 'Atta (Wheat Flour)', baseQuantity: 80, unit: 'grams', category: 'Groceries'),
+        Ingredient(name: 'Green Peas & Spices', baseQuantity: 30, unit: 'grams', category: 'Groceries'),
+      ],
+      steps: [
+        'Sauté onions, ginger-garlic paste, and green chilies until fragrant.',
+        'Add minced chicken and spices, stirring constantly to prevent clumping.',
+        'Mix in green peas, cook for 15 minutes. Prepare wheat rotis and serve hot.',
+      ],
+    ),
   ];
 
   /// Returns all recipes.
