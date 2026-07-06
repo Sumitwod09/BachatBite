@@ -667,6 +667,23 @@ footer p {
   font-size: 0.9rem;
 }
 
+.creator-credit {
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.creator-credit a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.creator-credit a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
 /* Responsive Rules */
 @media (max-width: 992px) {
   .hero-grid, .slide-grid, .download-card {

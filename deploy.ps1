@@ -50,55 +50,46 @@ Write-Host "Also copied release APK to c:\Users\Ruby\Desktop\test\BachatBite.apk
 # 5. Git Branch Deployment
 Write-Host "Starting Git deployment to web_landing branch..." -ForegroundColor Yellow
 
-# Ensure working directory is clean before changing branches
-$status = git status --porcelain
-if ($status) {
-    Write-Host "Warning: You have uncommitted changes in your branch. Stashing them..." -ForegroundColor Gray
-    git stash | Out-Null
-}
+$gitRemote = git remote get-url origin
+$tempRepo = Join-Path $env:TEMP "BachatBite-Deploy-$(Get-Random)"
 
 try {
-    # Check if web_landing branch exists locally, if not create it
-    $prodExists = git branch --list web_landing
-    if (-not $prodExists) {
-        Write-Host "Creating web_landing branch..." -ForegroundColor Cyan
-        git branch web_landing
-    }
+    Write-Host "Cloning repository to temporary folder: $tempRepo" -ForegroundColor Cyan
+    # Clone locally to avoid copying large files
+    git clone --no-checkout . $tempRepo
 
-    # Copy dist contents to a temporary directory outside the repo so we don't lose it on checkout
-    $tempDeploy = [System.IO.Path]::GetTempFileName()
-    Remove-Item $tempDeploy
-    New-Item -ItemType Directory -Path $tempDeploy -Force | Out-Null
-    Copy-Item -Path "$distPath\*" -Destination $tempDeploy -Recurse -Force
+    # Store current location and change to temp repo
+    Push-Location $tempRepo
 
-    # Checkout web_landing branch
+    # Set remote to actual GitHub remote URL
+    git remote set-url origin $gitRemote
+
     Write-Host "Checking out web_landing branch..." -ForegroundColor Cyan
-    git checkout web_landing
-
-    # Delete everything in the repo except untracked/ignored folders like .dart_tool by using git rm
-    Write-Host "Clearing web_landing branch contents using git rm..." -ForegroundColor Cyan
-    git rm -rf .
-
-    # Copy files from temp deploy back to root
-    Write-Host "Copying deployment files..." -ForegroundColor Cyan
-    Copy-Item -Path "$tempDeploy\*" -Destination . -Recurse -Force
-
-    # Add only deployment files to avoid staging build directories
-    Write-Host "Staging deployment files..." -ForegroundColor Cyan
-    Get-ChildItem -Path $tempDeploy | ForEach-Object {
-        git add $_.Name
+    git fetch origin | Out-Null
+    
+    $branchExists = git branch -r --list "origin/web_landing"
+    if ($branchExists) {
+        git checkout web_landing
+        # Clear existing tracked files in the branch
+        git rm -rf .
+    } else {
+        # Create a new clean orphan branch
+        git checkout --orphan web_landing
     }
 
-    # Clean up temp folder
-    Remove-Item $tempDeploy -Recurse -Force
+    # Copy files from dist to temp repo
+    Write-Host "Copying deployment files..." -ForegroundColor Cyan
+    Copy-Item -Path "$distPath\*" -Destination . -Recurse -Force
 
-    # Commit changes
+    # Stage, commit, and push
+    Write-Host "Staging files..." -ForegroundColor Cyan
+    git add -A
+
     Write-Host "Committing changes..." -ForegroundColor Cyan
     git commit -m "deploy: update landing page, web planner under /app, and BachatBite.apk"
 
-    # Push to origin
     Write-Host "Pushing to GitHub (web_landing branch)..." -ForegroundColor Cyan
-    git push origin web_landing
+    git push origin web_landing -f
 
     Write-Host "Deployment completed successfully! Vercel should now deploy your landing page." -ForegroundColor Green
 }
@@ -107,22 +98,16 @@ catch {
     throw $_
 }
 finally {
-    # Checkout original branch
-    Write-Host "Restoring your original branch: $currentBranch" -ForegroundColor Cyan
-    git checkout $currentBranch
+    # Restore original location
+    Pop-Location
 
-    if ($status) {
-        Write-Host "Restoring stashed changes..." -ForegroundColor Gray
-        git stash pop | Out-Null
+    # Clean up temp repo
+    if (Test-Path $tempRepo) {
+        Remove-Item $tempRepo -Recurse -Force -ErrorAction SilentlyContinue
     }
-    
+
     # Remove dist folder
     if (Test-Path $distPath) {
-        Remove-Item -Path $distPath -Recurse -Force
-    }
-
-    # Remove temp deploy folder if it exists
-    if ($tempDeploy -and (Test-Path $tempDeploy)) {
-        Remove-Item -Path $tempDeploy -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path $distPath -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
