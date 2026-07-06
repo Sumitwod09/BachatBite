@@ -28,11 +28,18 @@ New-Item -ItemType Directory -Path (Join-Path $distPath "app") -Force | Out-Null
 # Copy landing page files
 Copy-Item -Path "web_landing\*" -Destination $distPath -Recurse -Force
 
-# Copy Flutter web build to /app
+# Copy Flutter web build to /app in both dist and web_landing
+$webLandingAppPath = "web_landing\app"
+if (Test-Path $webLandingAppPath) {
+    Remove-Item -Path $webLandingAppPath -Recurse -Force -ErrorAction SilentlyContinue
+}
+New-Item -ItemType Directory -Path $webLandingAppPath -Force | Out-Null
+Copy-Item -Path "build\web\*" -Destination $webLandingAppPath -Recurse -Force
 Copy-Item -Path "build\web\*" -Destination (Join-Path $distPath "app") -Recurse -Force
 
-# Copy APK to root of landing page
+# Copy APK to root of landing page in both dist and web_landing
 $apkSrc = "build\app\outputs\flutter-apk\app-release.apk"
+Copy-Item -Path $apkSrc -Destination "web_landing\BachatBite.apk" -Force
 Copy-Item -Path $apkSrc -Destination (Join-Path $distPath "BachatBite.apk") -Force
 
 # Copy APK to workspace root for local convenience
