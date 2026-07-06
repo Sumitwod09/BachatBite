@@ -53,6 +53,12 @@ Write-Host "Starting Git deployment to web_landing branch..." -ForegroundColor Y
 $gitRemote = git remote get-url origin
 $tempRepo = Join-Path $env:TEMP "BachatBite-Deploy-$(Get-Random)"
 
+# Get git config from main repository
+$gitName = git config user.name
+$gitEmail = git config user.email
+if (-not $gitName) { $gitName = "Sumitwod09" }
+if (-not $gitEmail) { $gitEmail = "sumit@example.com" }
+
 try {
     Write-Host "Cloning repository to temporary folder: $tempRepo" -ForegroundColor Cyan
     # Clone locally to avoid copying large files
@@ -61,8 +67,10 @@ try {
     # Store current location and change to temp repo
     Push-Location $tempRepo
 
-    # Set remote to actual GitHub remote URL
+    # Set remote and user config in temp repo
     git remote set-url origin $gitRemote
+    git config user.name $gitName
+    git config user.email $gitEmail
 
     Write-Host "Checking out web_landing branch..." -ForegroundColor Cyan
     git fetch origin | Out-Null
