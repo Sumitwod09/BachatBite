@@ -48,7 +48,7 @@ Write-Host "Distribution folder assembled successfully at $distPath" -Foreground
 Write-Host "Also copied release APK to c:\Users\Ruby\Desktop\test\BachatBite.apk" -ForegroundColor Green
 
 # 5. Git Branch Deployment
-Write-Host "Starting Git deployment to production branch..." -ForegroundColor Yellow
+Write-Host "Starting Git deployment to web_landing branch..." -ForegroundColor Yellow
 
 # Ensure working directory is clean before changing branches
 $status = git status --porcelain
@@ -58,11 +58,11 @@ if ($status) {
 }
 
 try {
-    # Check if production branch exists locally, if not create it
-    $prodExists = git branch --list production
+    # Check if web_landing branch exists locally, if not create it
+    $prodExists = git branch --list web_landing
     if (-not $prodExists) {
-        Write-Host "Creating production branch..." -ForegroundColor Cyan
-        git branch production
+        Write-Host "Creating web_landing branch..." -ForegroundColor Cyan
+        git branch web_landing
     }
 
     # Copy dist contents to a temporary directory outside the repo so we don't lose it on checkout
@@ -71,12 +71,12 @@ try {
     New-Item -ItemType Directory -Path $tempDeploy -Force | Out-Null
     Copy-Item -Path "$distPath\*" -Destination $tempDeploy -Recurse -Force
 
-    # Checkout production branch
-    Write-Host "Checking out production branch..." -ForegroundColor Cyan
-    git checkout production
+    # Checkout web_landing branch
+    Write-Host "Checking out web_landing branch..." -ForegroundColor Cyan
+    git checkout web_landing
 
     # Delete everything in the repo except untracked/ignored folders like .dart_tool by using git rm
-    Write-Host "Clearing production branch contents using git rm..." -ForegroundColor Cyan
+    Write-Host "Clearing web_landing branch contents using git rm..." -ForegroundColor Cyan
     git rm -rf .
 
     # Copy files from temp deploy back to root
@@ -92,8 +92,8 @@ try {
     git commit -m "deploy: update landing page, web planner under /app, and BachatBite.apk"
 
     # Push to origin
-    Write-Host "Pushing to GitHub (production branch)..." -ForegroundColor Cyan
-    git push origin production
+    Write-Host "Pushing to GitHub (web_landing branch)..." -ForegroundColor Cyan
+    git push origin web_landing
 
     Write-Host "Deployment completed successfully! Vercel should now deploy your landing page." -ForegroundColor Green
 }
