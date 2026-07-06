@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+    { "source": "/app/((?!assets/|.*\\..*).*)", "destination": "/app/index.html" }
   ]
 }

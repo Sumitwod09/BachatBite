@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BachatBite — Smart Budget Food Planner for India</title>
+  <meta name="description" content="Plan delicious Indian meals under a tight budget. Optimize groceries, track costs per portion, and download the Android APK.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Spice Elements (Aesthetic Micro-Animations) -->
+  <div class="spice-float float-1">🌶️</div>
+  <div class="spice-float float-2">🧅</div>
+  <div class="spice-float float-3">🍋</div>
+  <div class="spice-float float-4">🥬</div>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <img src="assets/logo.png" alt="BachatBite Logo" class="nav-logo">
+        <span class="brand-name">Bachat<span>Bite</span></span>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#showcase">Screenshots</a>
+        <a href="#download" class="btn btn-primary nav-btn">Download APK</a>
+        <a href="./app/" class="btn btn-secondary nav-btn">Launch Planner</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text-content">
+        <div class="badge">🇮🇳 Designed for Indian Households</div>
+        <h1>Eat Smart. <br>Spend Wise. <br><span class="highlight">Save Big.</span></h1>
+        <p class="subtitle">BachatBite helps you plan a full 7-day Indian meal calendar optimized precisely for your monthly budget. Get unified grocery lists, scale portions, and filter recipes by cooking time or fridge availability.</p>
+        
+        <div class="hero-actions">
+          <a href="BachatBite.apk" download class="btn btn-primary btn-large download-cta">
+            <span class="btn-icon">📥</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Download Android APK</span>
+              <span class="btn-subtitle">Direct safe download (~48 MB)</span>
+            </div>
+          </a>
+          <a href="./app/" class="btn btn-secondary btn-large">
+            <span class="btn-icon">⚡</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Launch Web App</span>
+              <span class="btn-subtitle">Open planner in browser</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-mockup-wrapper">
+        <div class="glow-bg"></div>
+        <div class="mockup-frame">
+          <img src="assets/home.png" alt="BachatBite App Preview" class="mockup-img">
+        </div>
+        <!-- Overlapping floating badges for interaction -->
+        <div class="floating-badge badge-budget">
+          <span class="badge-icon">💰</span>
+          <div>
+            <h4>Min. Budget</h4>
+            <p>₹15 per Meal</p>
+          </div>
+        </div>
+        <div class="floating-badge badge-meals">
+          <span class="badge-icon">🍲</span>
+          <div>
+            <h4>Indian Recipes</h4>
+            <p>12+ Local Choices</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Features Built for Smart Living</h2>
+        <p>BachatBite combines local Indian flavors with rigorous budget constraints.</p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Card 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Budget Optimizer</h3>
+          <p>Input your target food budget and let the algorithm assemble a balanced weekly plan without exceeding your limit.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">🛒</div>
+          <h3>Categorized Grocery List</h3>
+          <p>Automatically generates a scaled shopping list divided into categories like Groceries, Vegetables, and Dairy/Eggs for easy shopping.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">❄️</div>
+          <h3>No-Fridge Filter</h3>
+          <p>Don't have refrigeration? Simply toggle the Fridge setting off, and the planner automatically excludes recipes with perishable ingredients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot Showcase Section -->
+  <section id="showcase" class="showcase">
+    <div class="container">
+      <div class="section-header">
+        <h2>Experience the Interface</h2>
+        <p>A simple, dark-themed interface crafted for ease of use and accessibility.</p>
+      </div>
+
+      <!-- Carousel -->
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          
+          <div class="carousel-slide active">
+            <div class="slide-grid">
+              <div class="slide-image">
+                <img src="assets/wizard.png" alt="Meal preferences wizard">
+              </div>
+              <div class="slide-text">
+                <div class="slide-num">01 / 04</div>
+                <h3>Set Your Preferences</h3>
+                <p>Choose your household size, daily budget, and diet (Veg, Eggitarian, or Non-Veg). Toggle fridge settings and cooking time limits in seconds.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="slide-grid">
+              <div class="slide-image">
+                <img src="assets/dashboard.png" alt="BachatBite Dashboard">
+              </div>
+              <div class="slide-text">
+                <div class="slide-num">02 / 04</div>
+                <h3>Weekly Planner</h3>
+                <p>View your 7-day breakfast, lunch, and dinner layout. Easily swap out specific meals if you prefer another recipe, keeping budget constraints intact.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="slide-grid">
+              <div class="slide-image">
+                <img src="assets/meal_plan.png" alt="Meal detailed instructions">
+              </div>
+              <div class="slide-text">
+                <div class="slide-num">03 / 04</div>
+                <h3>Detailed Recipe Guides</h3>
+                <p>Click on any planned meal to see step-by-step preparation guidelines, exact cooking times, and scaled ingredient portions for your household size.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="slide-grid">
+              <div class="slide-image">
+                <img src="assets/grocery.png" alt="Grocery Checklist">
+              </div>
+              <div class="slide-text">
+                <div class="slide-num">04 / 04</div>
+                <h3>Interactive Grocery Checklist</h3>
+                <p>Cross out items as you shop. The ingredients are automatically aggregated across all 21 planned meals to minimize food waste and shopping time.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <button class="carousel-btn prev-btn">❮</button>
+        <button class="carousel-btn next-btn">❯</button>
+
+        <div class="carousel-dots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+          <span class="dot" data-slide="3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download APK Section -->
+  <section id="download" class="download-section">
+    <div class="container">
+      <div class="download-card">
+        <div class="download-content">
+          <h2>Get BachatBite for Android</h2>
+          <p>Carry your budget meal planner and shopping list directly to the grocery store. Install the official APK today.</p>
+          
+          <div class="apk-info">
+            <div class="info-item">
+              <span class="info-label">File Size:</span>
+              <span class="info-val">~48.2 MB</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Version:</span>
+              <span class="info-val">v1.0.0 (Release)</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Requirements:</span>
+              <span class="info-val">Android 6.0+</span>
+            </div>
+          </div>
+
+          <a href="BachatBite.apk" download class="btn btn-primary btn-large download-pulse">
+            <span>📥 Download BachatBite.apk</span>
+          </a>
+        </div>
+        <div class="download-visual">
+          <img src="assets/logo.png" alt="App Logo large" class="download-logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 BachatBite. Built for budget-optimized cooking and zero food waste in India.</p>
+    </div>
+  </footer>
+
+  <!-- Script for Carousel logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.dot');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+
+      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          const targetIndex = parseInt(e.target.getAttribute('data-slide'));
+          showSlide(targetIndex);
+        });
+      });
+
+      // Auto-slide every 5 seconds
+      setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
